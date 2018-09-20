@@ -1,0 +1,11 @@
+
+{% for type in types.types|!enum where type|annotated:"AutoInit" %}
+    // sourcery:inline:auto:{{ type.name }}.AutoInit
+    {% map type.storedVariables into args using var %}{{ var.name }}: {{ var.typeName }}{% endmap %}
+    init({{ args|join:", " }}) {
+        {% for var in type.storedVariables %}
+        self.{{ var.name }} = {{ var.name }}
+        {% endfor %}
+    }
+    // sourcery:end
+{% endfor %}
