@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol SharedContainerType {
+protocol ContainerType {
     var userManager: UserManagerType { get }
-    var analyticsType: AnalyticsType { get }
+    var analytics: AnalyticsType { get }
 }
 
 protocol UserManagerType {
@@ -27,3 +27,4 @@ protocol AnalyticsType {
     func trackScreen(stringName: String)
     func handleShortcuts(with url: String)
 }
+
