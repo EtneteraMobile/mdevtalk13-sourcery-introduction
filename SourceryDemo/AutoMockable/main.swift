@@ -7,11 +7,13 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol ContainerType {
     var userManager: UserManagerType { get }
     var analytics: AnalyticsType { get }
 }
 
+// sourcery: AutoMockable
 protocol UserManagerType {
     var isRegistrationCompleted: Bool { get }
     var isBiometricAuthEnabled: Bool { get }
@@ -23,8 +25,13 @@ protocol UserManagerType {
     func forceUpdateClientOverview(completion: ((Bool) -> Void)?)
 }
 
+// sourcery: AutoMockable
 protocol AnalyticsType {
     func trackScreen(stringName: String)
     func handleShortcuts(with url: String)
 }
 
+let container = ContainerTypeMock()
+let analytics = AnalyticsTypeMock()
+container.analytics = analytics
+analytics.trackScreenStringNameClosure
